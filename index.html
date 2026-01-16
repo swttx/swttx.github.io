@@ -161,6 +161,34 @@
             mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%),
                         linear-gradient(to top, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
         }
+        .footer-img {
+            width: 200px; /* Фиксированная ширина для контроля */
+            height: 200px; /* Фиксированная высота */
+            cursor: pointer;
+            transition: background-image 0.5s ease, opacity 0.5s ease;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: block; /* Для центрирования */
+            margin: 0 auto; /* Центрирование по горизонтали */
+        }
+
+        /* Для телефонов */
+        @media (max-width: 768px) {
+            .footer-img {
+                width: 150px; /* Меньше на телефоне */
+                height: 150px;
+                max-width: 80%; /* Чтобы не вылезала за экран */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-img {
+                width: 120px;
+                height: 120px;
+                max-width: 70%;
+            }
+        }
 
         /* Анимации */
         @keyframes heartbeat {
@@ -282,12 +310,41 @@
             <img src="images/photo5.png" class="images" alt="Love">
             <img src="images/photo6.png" class="images" alt="Love">
             <img src="images/photo7.png" class="images" alt="Love">
+            <img src="images/photo8.png" class="images" alt="Love">
+            <img src="images/photo9.png" class="images" alt="Love">
+            <img src="images/photo10.png" class="images" alt="Love">
+            <img src="images/photo11.png" class="images" alt="Love">
+            <img src="images/photo12.png" class="images" alt="Love">
+            <img src="images/photo13.png" class="images" alt="Love">
+            <img src="images/photo14.png" class="images" alt="Love">
+            <img src="images/photo15.png" class="images" alt="Love">
+            
         </div>
     </main>
 
     <script>
         // Устанавливаем дату начала отношений
         const startDate = new Date('October 14, 2025 00:00:00').getTime();
+        let isFirst = true;
+    
+        function changeImage() {
+            const container = document.getElementById('imageContainer');
+            
+            // Плавно меняем фон и одновременно исчезаем
+            container.style.opacity = '1';
+            
+            setTimeout(() => {
+                if (isFirst) {
+                    container.style.backgroundImage = "url('images/footer2.png')";
+                } else {
+                    container.style.backgroundImage = "url('images/footer.png')";
+                }
+                isFirst = !isFirst;
+                
+                // Возвращаем прозрачность
+                container.style.opacity = '1';
+            }, 250); // Половина времени анимации
+        }
 
         // Обновляем таймер каждую секунду
         function updateTimer() {
@@ -350,12 +407,13 @@
             }
         });
     </script>
+    <footer style="position: fixed; bottom: 0; width: 100%; text-align: center;">
+        <div id="imageContainer" 
+             class="footer-img"
+             style="background-image: url('images/footer.png');"
+             onclick="changeImage()"></div>
+    </footer>
 </body>
 
 
 </html>
-
-
-
-
-
